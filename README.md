@@ -12,9 +12,9 @@ Via API AND UI, you should be able to:
 UI should offer an index page, a show page, and forms to edit a Contact. There should also be a delete button.
 
 A `Contact` is:
-- First name
-- Last name
-- Phone Number
+- First name, required
+- Last name, optional
+- Phone Number, required
 
 ## Validations
 - A name can contain letters or a dash or a space
