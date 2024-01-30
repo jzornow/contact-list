@@ -39,6 +39,42 @@ RSpec.describe "/contacts", type: :request do
       get contacts_url
       expect(response).to be_successful
     end
+
+    context 'with filtering' do
+      let(:params) { { filter: } }
+
+      context 'with alphabetical sort' do
+        let(:filter) { 'alphabetical' }
+        it 'renders a successful response' do
+          get(contacts_url, params:) 
+          expect(response).to be_successful
+        end
+      end
+
+      context 'with reverse alphabetical sort' do
+        let(:filter) { 'reverse_alphabetical' }
+        it 'renders a successful response' do
+          get(contacts_url, params:) 
+          expect(response).to be_successful
+        end
+      end
+
+      context 'with creation date sort' do
+        let(:filter) { 'creation)date' }
+        it 'renders a successful response' do
+          get(contacts_url, params:) 
+          expect(response).to be_successful
+        end
+      end
+
+      context 'with reverse creation date sort' do
+        let(:filter) { 'reverse_creation_date' }
+        it 'renders a successful response' do
+          get(contacts_url, params:) 
+          expect(response).to be_successful
+        end
+      end
+    end
   end
 
   describe "GET /show" do

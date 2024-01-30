@@ -3,7 +3,22 @@ class ContactsController < ApplicationController
 
   # GET /contacts or /contacts.json
   def index
-    @contacts = Contact.all
+    filter = params[:filter]
+
+    # These could use scopes, but that sounds excessive for now. Maybe in the future.
+    @contacts =
+      case filter
+      when 'alphabetical'
+        Contact.order(first_name: :asc)
+      when 'reverse_alphabetical'
+        Contact.order(first_name: :desc)
+      when 'creation_date'
+        Contact.order(created_at: :asc)
+      when 'reverse_creation_date'
+        Contact.order(created_at: :desc)
+      else
+        Contact.all
+      end
   end
 
   # GET /contacts/1 or /contacts/1.json
