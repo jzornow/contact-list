@@ -81,6 +81,12 @@ RSpec.describe Contact, type: :model do
         let(:phone_number) { '123-4567' }
         it { is_expected.to be_invalid }
       end
+
+      context 'must be unique' do
+        let!(:existing_contact) { Contact.create(first_name: 'Micki', last_name: 'Foo', phone_number: '123-456-7890') }
+        let(:phone_number) { '123-456-7890' }
+        it { is_expected.to be_invalid }
+      end
     end
   end
 end
