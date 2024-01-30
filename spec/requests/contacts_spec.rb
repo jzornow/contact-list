@@ -18,11 +18,19 @@ RSpec.describe "/contacts", type: :request do
   # Contact. As you add validations to Contact, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    { 
+      first_name: 'Micki',
+      last_name: 'Balder',
+      phone_number: '6176661234'
+    } 
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      first_name: 'Mi3ki',
+      last_name: 'B@lder',
+      phone_number: '(617)699-1465'
+    }
   }
 
   describe "GET /index" do
@@ -89,14 +97,20 @@ RSpec.describe "/contacts", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+          first_name: 'Judy',
+          last_name: 'Bloom',
+          phone_number: '9991234567'
+        }
       }
 
       it "updates the requested contact" do
         contact = Contact.create! valid_attributes
         patch contact_url(contact), params: { contact: new_attributes }
         contact.reload
-        skip("Add assertions for updated state")
+        expect(contact.phone_number).to eq('9991234567')
+        expect(contact.first_name).to eq('Judy')
+        expect(contact.last_name).to eq('Bloom')
       end
 
       it "redirects to the contact" do
